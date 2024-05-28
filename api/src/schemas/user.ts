@@ -10,6 +10,7 @@ const UserSchema = new Schema<User>(
     username: {
       type: SchemaTypes.String,
       required: true,
+      unique: true,
     },
     password: {
       type: SchemaTypes.String,

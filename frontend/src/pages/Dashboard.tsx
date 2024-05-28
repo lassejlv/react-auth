@@ -4,6 +4,7 @@ import useAuth from '../hooks/useAuth';
 import logout from '../helpers/logout';
 import toast from 'react-hot-toast';
 import { useState } from 'react';
+import token from '../helpers/getToken';
 
 export default function Dashboard() {
     const [btnLoading, setButtonLoading] = useState<boolean>(false);
@@ -28,7 +29,7 @@ export default function Dashboard() {
                 'Content-Type': 'application/json',
             },
             // @ts-ignore
-            body: JSON.stringify({ username, token: document.cookie.split(';').find(cookie => cookie.trim().startsWith('token=')).split('=')[1] }),
+            body: JSON.stringify({ username, token: token() }),
         });
 
         if (!response.ok) {
