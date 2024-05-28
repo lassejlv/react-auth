@@ -18,14 +18,17 @@ const router = createBrowserRouter([
   },
   {
     path: '/login',
+    // @ts-ignore
     element: <Login />,
   },
   {
     path: '/register',
+    // @ts-ignore
     element: <Register />,
   },
   {
     path: '/dashboard',
+    // @ts-ignore
     element: <Dashboard />,
   },
 

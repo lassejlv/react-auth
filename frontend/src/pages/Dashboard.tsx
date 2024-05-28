@@ -1,12 +1,11 @@
 import Spinner from '../components/Spinner';
 import { useNavigate } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
-import logout from '../helpers/logout';
 import toast from 'react-hot-toast';
 import { useState } from 'react';
 import token from '../helpers/getToken';
 
-export default function Dashboard() {
+function Dashboard() {
     const [btnLoading, setButtonLoading] = useState<boolean>(false);
     const { data, loading } = useAuth();
     const navigate = useNavigate();
@@ -58,3 +57,5 @@ export default function Dashboard() {
         </>
     )
 }
+
+export default Dashboard;

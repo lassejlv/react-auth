@@ -10,7 +10,7 @@ const schema = z.object({
     password: z.string().min(6).max(50),
 });
 
-export default function Login() {
+function Login() {
     const [btnLoading, setButtonLoading] = useState<boolean>(false);
     const { data, loading } = useAuth();
     const navigate = useNavigate();
@@ -79,3 +79,5 @@ export default function Login() {
         </>
     )
 }
+
+export default Login;
