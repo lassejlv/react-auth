@@ -8,6 +8,8 @@ import './index.css'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
+import Register from './pages/Register'
+import Navbar from './components/Navbar'
 
 const router = createBrowserRouter([
   {
@@ -19,15 +21,20 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
+    path: '/register',
+    element: <Register />,
+  },
+  {
     path: '/dashboard',
     element: <Dashboard />,
-  }
+  },
 
 ])
 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
+    <Navbar />
     <Toaster position='bottom-center' />
     <RouterProvider router={router} />
   </React.StrictMode>,
