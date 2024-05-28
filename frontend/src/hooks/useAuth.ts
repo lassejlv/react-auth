@@ -1,7 +1,12 @@
 import { useState, useEffect } from "react";
 
 interface User {
+  id: string;
   username: string;
+  email?: string;
+  email_verified: boolean;
+  created_at: string;
+  updated_at: string;
 }
 
 function useAuth() {
@@ -10,25 +15,20 @@ function useAuth() {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    const token = document.cookie
-      .split(";")
-      .find((cookie) => cookie.trim().startsWith("token="));
+    const token = document.cookie.split(";").find((cookie) => cookie.trim().startsWith("token="));
 
     if (token) {
       const tokenValue = token.split("=")[1];
 
       const fetchData = async () => {
         try {
-          const response = await fetch(
-            `${import.meta.env.VITE_API_URL}/auth/ping`,
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ token: tokenValue }),
-            }
-          );
+          const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/ping`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ token: tokenValue }),
+          });
 
           if (!response.ok) {
             throw new Error("Failed to fetch user data");

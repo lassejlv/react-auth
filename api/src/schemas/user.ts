@@ -1,19 +1,33 @@
-import { Schema, SchemaTypes, model } from "mongoose";
+import { Schema, model } from "mongoose";
 
 interface User {
   username: string;
+  email?: string;
+  email_verified: boolean;
   password: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 const UserSchema = new Schema<User>(
   {
     username: {
-      type: SchemaTypes.String,
+      type: String,
       required: true,
       unique: true,
     },
+    email: {
+      type: String,
+      required: false,
+      unique: true,
+    },
+    email_verified: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
     password: {
-      type: SchemaTypes.String,
+      type: String,
       required: true,
     },
   },

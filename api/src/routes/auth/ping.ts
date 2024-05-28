@@ -19,7 +19,17 @@ export async function POST(req: Request): Promise<Response> {
     const userData = await UserModel.findById(parsedSession.user);
     if (!userData) throw new Error("User not found");
 
-    return c.json({ message: "Pong", data: { username: userData.username } });
+    return c.json({
+      message: "Pong",
+      data: {
+        id: userData._id,
+        username: userData.username,
+        email: userData.email,
+        email_verified: userData.email_verified,
+        created_at: userData.createdAt,
+        updated_at: userData.createdAt,
+      },
+    });
   } catch (error: any) {
     return c.error(error.message);
   }
