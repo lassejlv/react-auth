@@ -64,13 +64,10 @@ function Login() {
     navigate("/dashboard");
   };
 
-  const handleResetPassword = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault;
-
+  const handleResetPassword = async (e: React.MouseEvent<HTMLButtonElement>) => {
     setButtonLoading(true);
 
-    const data = new FormData(e.currentTarget);
-    const email = data.get("email") as string;
+    const email = (document.getElementById("passwordResetEmail") as HTMLInputElement).value;
 
     const parsedData = resetPasswordSchema.safeParse({ email });
 
@@ -133,13 +130,13 @@ function Login() {
         <>
           <h1 className="text-2xl font-bold  mb-2">Reset Password</h1>
           <p>Enter your email to receive a password reset link</p>
-          <form className="flex flex-col gap-2" onSubmit={handleResetPassword}>
-            <input type="email" placeholder="Email" name="email" className="input input-sm input-bordered" />
-            <button type="submit" className="btn btn-sm btn-neutral" disabled={btnLoading}>
+          <div className="flex flex-col gap-2">
+            <input type="email" placeholder="Email" id="passwordResetEmail" className="input input-sm input-bordered" />
+            <button type="submit" className="btn btn-sm btn-neutral" disabled={btnLoading} onClick={handleResetPassword}>
               {btnLoading && <Spinner />}
               Send reset email
             </button>
-          </form>
+          </div>
         </>
       )}
     </>
